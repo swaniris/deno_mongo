@@ -26,8 +26,9 @@ export function parse_url(url: string): any {
 
   // Check if we have auth params
   if (connection_part.indexOf("@") != -1) {
-    auth_part = connection_part.split("@")[0];
-    connection_part = connection_part.split("@")[1];
+    const split_connection_part = connection_part.split("@");
+    connection_part = split_connection_part.slice(-1)[0];
+    auth_part = split_connection_part.slice(0, -1).join('@');
   }
 
   // Check if the connection string has a db
